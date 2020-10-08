@@ -1,4 +1,9 @@
-trigger MailTrigger on Mail__c (before update, before delete, after insert, after update, after delete, after undelete) {
+trigger MailTrigger on Mail__c (before insert, 
+                                before update, 
+                                before delete,
+                                after update,
+                                after delete, 
+                                after undelete) {
 
     Switch on trigger.operationType {
         when AFTER_DELETE {
@@ -16,11 +21,14 @@ trigger MailTrigger on Mail__c (before update, before delete, after insert, afte
         when BEFORE_DELETE {
             MailTriggerHandler.CheckDateIfMissing(trigger.new);
         }
-        when BEFORE_INSERT{
+        when BEFORE_INSERT {
             
         }
-        when BEFORE_UPDATE{
-            MailTriggerHandler.CheckApprovalLock(trigger.new);
+        when BEFORE_UPDATE {
+            
+        MailTriggerHandler.CheckApprovalLock(trigger.new);
+            
         }
     }
+    
 }

@@ -9,8 +9,8 @@
                 <operation>equals</operation>
                 <value>Missing Mail</value>
             </criteriaItems>
-            <senderEmail>henry.takizawa@revature.net</senderEmail>
-            <senderName>Created</senderName>
+            <senderEmail>tapiwachadenga@gmail.com</senderEmail>
+            <senderName>New Email</senderName>
             <template>unfiled$public/Missing_Mail_Auto</template>
         </ruleEntry>
     </autoResponseRule>

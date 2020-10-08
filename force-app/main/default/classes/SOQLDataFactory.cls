@@ -41,7 +41,7 @@ public class SOQLDataFactory {
                                               Max_Number_of_Vehicles__c=20, City__c='Seattle', State__c='WA', 
                                               States_Covered__c='WA', Street__c='15600 NE 8th St', 
                                               Zip_Code__c='98101'));
-        insert dcList;
+        // insert dcList;
         
         List<Vehicle__c> vList = new List<Vehicle__c>();
         Integer numPackages = 0;
@@ -52,13 +52,13 @@ public class SOQLDataFactory {
             vList.add(new Vehicle__c(Name='VAN-000' + i, Last_Departure__c=departDate, 
                                      Number_of_Packages__c=numPackages));
         }
-        insert vList;
+        // insert vList;
         
         List<Vehicle_Schedule__c> vsList = new List<Vehicle_Schedule__c>();
         for(Integer i = 0; i < 55; i++){
             if(i < 10){
-                vsList.add(new Vehicle_Schedule__c(Name='VS-000' + i, Distribution_Center__c=dcList[0].Id, 
-                                                   Vehicle__c=vList[i].Id));
+                vsList.add(new Vehicle_Schedule__c(Name='VS-000' + i, Distribution_Center__c=dcList.get(0).Id, 
+                                                   Vehicle__c=vList.get(i).Id));
             }
             else if(i < 15){
                 vsList.add(new Vehicle_Schedule__c(Name='VS-000' + i, Distribution_Center__c=dcList[1].Id, 
@@ -97,6 +97,10 @@ public class SOQLDataFactory {
                                                    Vehicle__c=vList[i].Id));
             }
         }
-        insert vsList;
+        // insert vsList;
+        for (vehicle__c v : vList){
+            System.debug(v.name);
+            System.debug(v.Id);
+        }
     }
 }

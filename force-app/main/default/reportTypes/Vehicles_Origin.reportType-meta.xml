@@ -96,17 +96,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Origin_Location__c.Current_Number_of_Vehicles__c</field>
+            <table>Vehicle__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Origin_Location__c.State__c</field>
             <table>Vehicle__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Origin_Location__c.Name</field>
-            <table>Vehicle__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Origin_Location__c.Current_Number_of_Vehicles__c</field>
             <table>Vehicle__c</table>
         </columns>
         <masterLabel>Distribution Information</masterLabel>

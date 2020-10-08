@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Missing_Mail</fullName>
     <active>true</active>
-    <businessProcess>Mail Claim</businessProcess>
+    <businessProcess>Main Claim</businessProcess>
     <label>Missing Mail</label>
     <picklistValues>
         <picklist>Origin</picklist>
