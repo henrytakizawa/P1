@@ -1,0 +1,26 @@
+<apex:page controller="TrackingController" sidebar="false">
+    <apex:form >
+    	<apex:pageBlock title="Your Tracking Number">
+     	   <apex:outputLabel for="tracking" value="What is your tracking number?"/>
+     	   <apex:inputText value="{!nameCase}" id="tracking"/>
+           <apex:outputLabel for="tracking" value="{!errorMessage}"/>
+     	   <br/>
+     	   <apex:commandButton value="Find your package" action="{!returnMatchingPackages}"/>
+    	</apex:pageBlock>
+    </apex:form>
+    
+    <!-- chage the value fields below to appropriate ones-->
+    <apex:pageBlock title="Your Tracking Info">
+    	<apex:pageBlockTable value="{!matchingMail}" var="a">
+            <apex:column headerValue="Tracking Number" value="{!a.Name}"/> 
+            <apex:column headerValue="Delivery Status" value="{!a.Delivery_Status__c}"/>
+            <apex:column headerValue="Weight" value="{!a.Weight__c}" />
+            <apex:column headerValue="Fragile" value="{!a.Fragile__c}"/>
+            <apex:column headerValue="Mailing Address" value="{!a.Mailing_Address__c}"/>
+            <apex:column headerValue="Insured" value="{!a.Insurance__c}"/>
+            <apex:column headerValue="Value" value="{!a.Value__c}"/>
+            <apex:column headerValue="Missing" value="{!a.Missing__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+</apex:page>

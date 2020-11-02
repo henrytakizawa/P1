@@ -1,0 +1,69 @@
+<apex:page sidebar="false" controller="POTSMyMailController">
+    <apex:form >
+        
+    	<apex:pageBlock >
+            <!-- title and description for page -->
+            <apex:outputLabel >My Packages Overview</apex:outputLabel>
+            <br/>
+            <apex:outputText >Below are your packages, separated by delivery status. Select "View Packages" for a list of the packages in each stage of delivery.</apex:outputText>
+            <apex:pageBlockSection columns="2">
+            	<!-- section for buttons. Only 2 delivery statuses at the moment, In Transit and Delivered. Add functionality for more in future -->
+            
+				<!-- Delivery Status Labels-->
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel value="Delivery Status"/>
+                    <apex:outputLabel value="In Transit"/>
+            	</apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel value="Delivery Status"/>
+                    <apex:outputLabel value="Delivered"/>
+            	</apex:pageBlockSectionItem>
+                
+                <!-- buttons for choosing which delivery status for mail the user would like to see  <div align="center" draggable="false" ></div>-->
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel />
+                	<apex:commandButton value="View Packages" action="{!getPackages}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                	<apex:outputLabel />
+                	<apex:commandButton value="View Packages" action="{!getSentPackages}"/>
+                </apex:pageBlockSectionItem>
+
+                
+        </apex:pageBlockSection>
+    	</apex:pageBlock>
+        
+    <apex:pageBlock >
+    	<!-- table for showing mail in the delivery status specified by the button selected above -->
+    	<apex:pageBlockTable value="{!returnedpackages}" var="mail">
+            
+            <apex:column headerValue="Delivery Status">
+            	<apex:outputLabel value="{!mail.Delivery_Status__c}"/>
+            </apex:column>
+            <apex:column headerValue="Tracking Number">
+                <apex:outputLabel value="{!mail.name}"/>
+            </apex:column>
+            <apex:column headerValue="Destination Address">
+            	<apex:outputLabel value="{!mail.Mailing_Address__c}"/>
+            </apex:column>
+            <apex:column headerValue="Date Shipped">
+            	<apex:outputLabel value="Future Implementation"/>
+            </apex:column>
+            <apex:column headerValue="Date Arrived/Estimated">
+            	<apex:outputLabel value="Future Implementation"/>
+            </apex:column>
+            
+    	</apex:pageBlockTable>
+        
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Previous" disabled="true"/>
+            <apex:commandButton value="Next" disabled="true"/>
+        </apex:pageBlockButtons>
+        
+        
+        
+    </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

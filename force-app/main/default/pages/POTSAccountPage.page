@@ -1,0 +1,24 @@
+<apex:page standardController="Contact">
+    <h1>Your Account Information</h1>
+    <apex:form >
+    	<apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Edit" id="editButton" action="{!edit}"/>
+                <apex:commandButton value="Save" id="saveButton" action="{!save}"/>
+                <apex:commandButton value="Cancel" id="cancelButton" onclick="resetInlineEdit()"/>
+            </apex:pageBlockButtons>
+            
+        	<apex:pageBlockSection >
+            	<apex:outputField value="{!contact.FirstName}"/><br/>
+            	<apex:outputField value="{!contact.LastName}"/><br/>
+            	<apex:outputField value="{!contact.Phone}"/><br/>
+            	<apex:outputField value="{!contact.Email}"/><br/>
+            	<apex:outputField value="{!contact.MailingStreet}"/><br/>
+            	<apex:outputField value="{!contact.MailingCity}"/><br/>
+            	<apex:outputField value="{!contact.MailingState}"/><br/>
+            	<apex:outputField value="{!contact.MailingPostalCode}"/><br/>
+                <apex:outputField value="{!contact.MailingCountry}"/><br/>
+        	</apex:pageBlockSection>
+    	</apex:pageBlock>
+    </apex:form>
+</apex:page>

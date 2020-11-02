@@ -1,0 +1,25 @@
+<apex:page sidebar="false" standardController="Contact" extensions="contactUserExtension">
+    <script type="text/javascript">
+    
+    //retrieves the current users contact Id
+    var conId = '{!ContactId}';
+    
+    //function to pass Contact Id into URL
+    function IdIntoURL(){
+        location.href = "https://potsclub-developer-edition.na139.force.com/CustomerPortal/apex/POTSContactPage?sfdc.tabName=01r4W000000NUy3&id="+conId;
+    }
+    
+    //function to call on page load.
+    window.onload = function(){
+        if (location.href != "https://potsclub-developer-edition.na139.force.com/CustomerPortal/apex/POTSContactPage?sfdc.tabName=01r4W000000NUy3&id="+conId){
+        IdIntoURL();
+        }
+        else{}  
+    };
+    
+    </script>
+    <style type="text/css">
+        input.btn[name="clone"]{display: none;}
+    </style>
+    <apex:detail subject="{!contact.Id}" relatedList="false" inlineEdit="true"/>
+</apex:page>

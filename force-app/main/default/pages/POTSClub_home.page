@@ -1,0 +1,279 @@
+<apex:page standardController="Account" showHeader="true">
+    <!--
+    <h1>
+        Edit Contact 
+    </h1>
+    <apex:pageBlock title="Contacts">
+        
+    	<apex:pageBlockTable value="{! Account.contacts }" var="cont">
+            
+            <apex:column value="{!Cont.Name}" />
+            <apex:column value="{!Cont.Title}" />
+            <apex:column value="{!Cont.Phone}" />
+            
+    	</apex:pageBlockTable>
+
+    </apex:pageBlock>
+    
+    <apex:form>
+    <apex:pageBlock>
+    <apex:pageBlockSection columns="1">
+    <apex:inputField value="{! Contact.FirstName }" />
+    <apex:inputField value="{! Contact.Email }" />
+    <apex:inputField value="{! Contact.Phone }" />
+    <apex:commandButton action="{! save }" value="Save" /> 
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+ 
+    <div style="width: 50%">
+        <apex:image url="{! $Resource.Delivery_Van_1 }" />
+    </div>
+    
+    <apex:pageBlock title="Contacts List">
+
+        <apex:pageBlockTable value="{! contacts }" var="ct">
+      
+            <apex:column value="{! ct.FirstName }" />
+            <apex:column value="{! ct.LastName }" />
+            <apex:column value="{! ct.Email }" />
+            <apex:column value="{! ct.Account.Name }" />
+         
+        </apex:pageBlockTable>
+            
+    </apex:pageBlock>
+
+    <h1>
+        Hello "{! $User.LastName}", welcome to TapsForce.
+    </h1>
+    <p>
+		Today's date is "{! TODAY() }"        
+    </p>
+    <p>
+        Next week is "{! TODAY() + 7}"
+    </p>
+    <p>
+        The year today is "{! YEAR(TODAY()) }"
+    </p>
+    <p>
+        Tomorrow will be day number "{! DAY(TODAY()) }"
+    </p>
+    <p>
+        The squareroot of 49 is {! SQRT(49)}
+    </p>
+   
+    <apex:outputField value="<strong>{!Account.Name}</strong>" />
+    <apex:outputField value="<strong>{!Account.AccountNumber}</strong>" />
+    <apex:inputField value="<strong>{!Account.Industry}</strong>" />
+    <apex:inputField value="<strong>{!Account.Type}</strong>" />
+    
+   <apex:form>
+    
+        <apex:pageBlock>
+        
+            <apex:pageBlockTable value="{! accs }" var="acc">
+            
+            	<apex:column headerValue="Account Name">
+                
+                    <apex:inputField value="{! acc.Name }" />
+                
+                </apex:column>
+                
+                <apex:column headerValue="Account Number">
+                
+                	<apex:inputField value="{! acc.AccountNumber}" />
+                    
+                </apex:column>
+                
+                <apex:column headerValue="Account Type">
+                
+                    <apex:inputfield value="{! acc.Type }"/>
+                
+                </apex:column>
+                
+                <apex:column headerValue="Industry">
+
+                	<apex:inputField value="{! acc.Industry }"/>
+                
+                </apex:column>
+            
+            </apex:pageBlockTable>
+            
+            <apex.pageBlockButtons>
+            
+            	<apex:commandButton value="Add one more account" action="{! addAccount}" />
+                <apex:commandButton value="Save Accounts" action="{! saveAccount}" />
+                
+            </apex.pageBlockButtons>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+    <apex:form>
+    
+   		<apex:pageBlock>
+        
+        	<apex:pageBlockTable value="{! accs }" var="acc">
+            
+				<apex:column headerValue="Account Name">
+                
+                	<apex:outputField value="{! acc.Name }" />
+                
+                </apex:column>            	
+            
+            </apex:pageBlockTable>
+            
+            	<apex:pageBlockButtons>
+                
+                	<apex:commandButton value="First" action="{! first }" />
+                    <apex:commandButton value="Last" action="{! last }" />
+                    <apex:commandButton value="Next" action="{! next }" />
+                    <apex:commandButton value="Previous" action="{! previous }" />
+                    
+                </apex:pageBlockButtons>
+            
+            
+        
+        </apex:pageBlock>
+    
+    </apex:form>
+
+    <apex:form>
+    
+    	<apex:pageBlock title="Displaying Opportunities">
+        
+        	<apex:selectList size="1" value="{! filterId }">
+            
+            	<apex:actionSupport event="onchange" reRender="oppList" />
+                <apex:selectOptions value="{! listViewOptions }" />
+                
+            </apex:selectList>
+            
+            <apex:pageBlockTable value="{! opps }" var="opp" id="oppList">
+            
+            	<apex:column value="{! opp.Name }"/>
+                <apex:column value="{! opp.Account.Name }"/>
+                <apex:column value="{! opp.StageName }"/>
+                <apex:column value="{! opp.Type }"/>
+                <apex:column value="{! opp.ExpectedRevenue }"/>
+            
+            </apex:pageBlockTable>
+            
+            <apex:pageBlockButtons location="Bottom">
+            
+            	<apex:commandLink value="First" action="{! first }" />
+                <apex:commandLink value="Last" action="{! last }" />
+                <apex:commandLink value="Next" action="{! next }" />
+                <apex:commandLink value="Previous" action="{! previous }" />
+                             
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+    
+    </apex:form>
+    
+    <script type="text/javascript">
+    
+    function validate(){
+		if (document.getElementById('{! $Component.LF.LDB.Lname}').value == '' || 
+            document.getElementById('{!$Component.LF.LDB.comp}'.).value == '')
+        {
+        	alert("Last Name and Company are reqyuired fields");    
+       	}
+        else{
+            <strong><span style="color: #ff0000;" data-mce-style="color: #ff0000;">CallsubmitLead();
+            </span></strong> 
+            alert("Account has been inserted");
+       	}
+    }
+    
+    </script>
+    
+    <apex:form id="LF">
+    
+    	<strong><span style="color: #ff0000;" data-mce-style="color: #ff0000;">
+    	<apex:actionFunction action="{! submitLead }" name="CallSubmitLead"  reRender="LDB"/></span></strong>
+        
+        <apex:pageBlock title="Lead Form - Enter lead details" id="LDB">
+  <table>
+  <tr>
+  <td><apex:outputText value="First Name"/></td>
+  <td><apex:inputText value="{!firstName}"/></td>
+  </tr>  
+  <tr>
+  <td><apex:outputText value="Last Name"/></td>
+  <td><apex:inputText value="{!lastName}" id="Lname"/></td>
+  </tr>  
+  <tr>
+  <td><apex:outputText value="Comapany"/></td>
+  <td><apex:inputText value="{!comapany}" id="comp"/></td>
+  </tr>  
+  <tr>
+  <td><apex:outputText value="Mobile"/></td>
+  <td><apex:inputText value="{!mobile}"/></td>
+  </tr>  
+  <tr>
+  <td><apex:outputText value="Lead Status"/></td>
+  <td><apex:selectList value="{!statusOptions}">
+  <apex:selectOptions value="{!items}"/>
+  </apex:selectList></td>
+  </tr>
+  </table>  
+  <apex:commandButton value="Save" onclick="validate();" />
+</apex:pageBlock> 
+        
+    </apex:form>
+    -->
+    <!-- Define Tab panel .css styles -->
+    <style>
+    .activeTab {background-color: #669900; color:white; background-image:none}
+    .inactiveTab { background-color: #66ff66; color:black; background-image:none}
+    </style>
+            
+    <apex:pageBlock >
+    <apex:pageBlockSection >
+        Company Logo, Name and catch phrase here
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock >
+    <!-- Create Tab panel -->
+    <apex:tabPanel switchType="client" selectedTab="name1" id="AccountTabPanel"
+        tabClass="activeTab" inactiveTabClass="inactiveTab">
+        <apex:tab label="Home" name="name1" id="tabOne">
+            <table style="width: 100%">  
+            <tr>
+                <td>Hello {! $User.FirstName}, welcome to the POTS community.</td>
+                <td style="text-align:right">{! NOW() }</td>
+            </tr>
+        	</table>
+            <apex:pageBlock >
+            
+                
+            
+            </apex:pageBlock>       
+        </apex:tab>
+        <apex:tab label="My Packages" name="name2" id="tabTwo">packages tabs here
+        	<apex:pageBlock >
+                <apex:tabPanel >
+                	<apex:tab label="Pkg Tab 1">
+                    Tab 1 data
+                    </apex:tab>
+                	<apex:tab label="Pkg Tab 2">
+                    tab2 data
+                    </apex:tab>
+                </apex:tabPanel>
+            </apex:pageBlock>
+        </apex:tab>
+        <apex:tab label="Track a Package" name="name3" id="tabThree">Track a your package here</apex:tab>
+        <apex:tab label="My Data" name="name4" id="tabFour">Find cool graphics here</apex:tab>
+        <apex:tab label="My Account" name="name5" id="tabFive">View and edit your account</apex:tab>
+        <apex:tab label="Help" name="6" id="tabSix">...help...</apex:tab>
+    </apex:tabPanel>
+       
+    </apex:pageBlock>
+    <apex:pageBlock >
+    	 footer
+    </apex:pageBlock>
+</apex:page>

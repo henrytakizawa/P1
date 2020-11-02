@@ -1,0 +1,114 @@
+<apex:page standardController="Contact" extensions="CostEstimator,LeadCreator" docType="html-5.0" sidebar="false" >
+    
+    <apex:pageBlock >
+    	<div>
+            
+            <table style="width: 100%">  
+                <tr>
+                    <td>Hello {! $User.FirstName}, welcome to POTSClub.</td>
+                    <td style="text-align:right">{! NOW() }</td>
+                </tr>
+           </table>
+            
+        </div>
+    </apex:pageBlock>
+    <apex:detail />
+    <apex:pageBlock >
+        
+        <div>
+            <center>
+                <!--<apex:detail />
+            	<apex:image value="{! URLFOR($Resource.Dog_with_packages) }" style="max-height:300px;" /> 
+                <analytics:reportChart reportId="00O4W000005HxT4UAK" hideOnError="false" />-->
+            </center>
+        </div>
+        
+    </apex:pageBlock>
+    
+    <apex:pageBlock >
+        
+            <p id="carousel00-heading0"><font style="font-size:18px;font-family: Tahoma;font-weight: bold;">You Deserve Big Savings on Shipping.</font>
+            </p>
+            <p>
+                <!-- <font style="font-size:12px;font-family: Tahoma;">While you are working hard, we are woking hard for you. Save up to 50% on every shipment by clicking below.</font> -->
+                <font style="font-size:12px;font-family: Tahoma;">Sending your packages across the country has never been quicker, easier and more affordable. For an estimation and a <strong>POTSClub discount voucher</strong>, enter details below.</font>
+    		</p>
+        	<br/>
+			<apex:form id="theForm">
+                <apex:actionRegion >
+                	<apex:pageBlock id="theBlock">
+                        <table width="100%">
+                            <tr>
+                                <th>Package type</th>
+                                <th>Size</th>
+                                <th>Class</th>
+                                <th>Insured</th>
+                                <th>State from</th>
+                                <th>State to</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                   <!-- <apex:input type="number" value="{! type }" id="theType" style="width:80px"/> -->
+                                    <apex:selectList id="packageType" multiselect="false" size="1" value="{! pkType }">
+               
+                                        <apex:selectOptions value="{! packageType }" rendered="true"></apex:selectOptions>
+                                    </apex:selectList>
+                                </td> 
+                                <td>
+                                	<!-- <apex:input type="number" value="{! height }"  id="theHeight" style="width:80px"/> --> 
+                                     <apex:selectList id="packageSize" multiselect="false" size="1" value="{! pkSize }">
+               
+                                        <apex:selectOptions value="{! packageSize }" rendered="true"></apex:selectOptions>
+                                    </apex:selectList>
+                                </td>
+                                <td>
+                                   <!-- <apex:input type="number" value="{! width }"  id="theWidth" style="width:80px" />-->
+                                     <apex:selectList id="packageClass" multiselect="false" size="1" value="{! pkClass }">
+               
+                                        <apex:selectOptions value="{! packageClass }" rendered="true"></apex:selectOptions>
+                                    </apex:selectList>
+                                </td>
+                                <td>
+                                    <apex:inputCheckbox value="{! isInsured }" style="width:80px" />
+                                </td>
+                                <td>
+                                    <apex:selectList id="statesFrom" multiselect="false" size="1" value="{! stateFrom }">
+               
+                                        <apex:selectOptions value="{! states }" rendered="true"></apex:selectOptions>
+                                    </apex:selectList>
+                                </td>
+                                <td>
+                                     <apex:selectList value="{! StateTo }" multiselect="false" size="1">
+                                 
+                                         <apex:selectOptions value="{! states }" rendered="true"></apex:selectOptions>
+                                    </apex:selectList>
+                                </td>
+                            </tr>         
+                        </table>
+                    	<table margin="10px" width="100%">
+                            <tr>
+                            	<td width="30%" align="right">
+                                	<apex:commandButton value="Get estimate"  styleClass="buttonStyle" style="background:Orange;width:125px;height:25px;" action="{! getEstimateCost }" /> 
+                            		
+                                </td>
+                                <td width="30%">
+                                     cost / mile: $<apex:outputLabel style="font:bold;" value="{! estCost }"></apex:outputLabel>
+                                </td>  
+                                <td>
+                                
+                                    <apex:commandButton value="Send me a quote"  styleClass="buttonStyle" style="background:Orange;width:125px;height:25px;" action="{! setLeadInfo }" /> 
+                                
+                                </td>
+                            </tr>
+                            
+                    	</table>
+                    	<!--<center>
+                        	<apex:commandButton value="Get Estimate"  styleClass="buttonStyle" style="background:Orange;width:100px;height:20px;" /> 
+                            <apex:actionSupport event="onclick" action="{! estimateCost }"/>
+                		</center>-->
+                    
+                 	</apex:pageBlock>
+                 </apex:actionRegion>
+            </apex:form>
+    </apex:pageBlock>
+</apex:page>
