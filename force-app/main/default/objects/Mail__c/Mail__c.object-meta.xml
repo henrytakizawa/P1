@@ -155,11 +155,13 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Mail</label>
     <nameField>
+        <displayFormat>Mail-{0}</displayFormat>
         <label>Mail Name</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Mail</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
